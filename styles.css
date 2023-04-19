@@ -1,0 +1,102 @@
+body {
+  background-image: url("https://th.bing.com/th/id/OIP.nkPEb1MF99uNc5ZzQp4VbgHaEK?pid=ImgDet&rs=1");
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 10%;
+  left: 17%;
+}
+#container {
+  display: flex;
+  height: 10rem;
+  width: 50rem;
+  /* border: 2px solid red; */
+  justify-content: space-evenly;
+}
+h1 {
+  font-size: 5rem;
+  margin: 0;
+  color: rgb(3, 138, 248);
+}
+#container span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+  color: white;
+}
+.box {
+  background-color: white;
+  height: 9rem;
+  margin: 5px;
+  width: 9rem;
+  box-shadow: 0px 0px 10px 10px rgb(88, 142, 193);
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  opacity: 0.5;
+}
+.day {
+  height: 2rem;
+  width: 15rem;
+  margin-bottom: 1rem;
+}
+h2 {
+  margin: 0;
+  text-decoration: underline;
+  font-size: 2rem;
+  color: rgb(3, 138, 248);
+}
+#calender {
+  height: 6rem;
+  width: 13rem;
+}
+#header {
+  /* border: 2px solid blue; */
+  display: flex;
+  justify-content: space-between;
+}
+#month-year {
+  display: flex;
+  justify-content: space-between;
+}
+hr {
+  margin: 0;
+  font-size: bolder;
+}
+#month-year span {
+  color: rgb(14, 68, 112);
+}
+#date {
+  background-color: transparent;
+  display: grid;
+  justify-content: center;
+  height: 4rem;
+  align-items: center;
+  opacity: 0.5s;
+  font-size: 3rem;
+  font-weight: bolder;
+  color: rgb(14, 68, 112);
+}
+.modal {
+  height: 23.2rem;
+  border-radius: 10px;
+}
+h3 {
+  color: beige;
+}
+input {
+  color: white;
+}
+.showbox-option {
+  color: green;
+  font-weight: bolder;
+  cursor: pointer;
+  display: flex;
+  width: 2rem;
+  left: 105%;
+  position: relative;
+  top: -35%;
+}
