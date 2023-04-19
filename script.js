@@ -7,7 +7,11 @@ let month = document.getElementById("month");
 let year = document.getElementById("year");
 let date = document.getElementById("date");
 let alarm = document.querySelectorAll('.timepicker');
-let alarmObj = {}
+let alarmList = document.getElementById('alarm-list');
+let elem = document.getElementById('elem-time');
+let alarmObj = {
+    alarms: []
+};
 let alarmInterval;
 
 
@@ -30,11 +34,11 @@ function setTime() {
         let y = d.getFullYear();
         let dur = "AM";
         if ((h > 12) || (h == 12 && m > 0)) {
-            h = h - 12;
+
             dur = "PM"
         }
-        if (h == 0) {
-            h = 1;
+        if (h > 12) {
+            h = h - 12;
         }
 
         hour.innerHTML = h;
@@ -45,25 +49,69 @@ function setTime() {
         month.innerHTML = monthName[mon];
         year.innerHTML = y;
         date.innerHTML = tarik;
+        alarmRings();
     }, 1000);
 }
 setTime();
 
 const set = () => {
     let alarmString = alarm[0].value;
-    alarmObj.hour = convert(alarmString.substr(0, 2));
-    alarmObj.min = convert(alarmString.substr(3, 3));
-    alarmObj.mer = alarmString.substr(6, 2);
-    alarmInterval = (alarmObj.hour + 12 - convert(hour)) * 3600;  //hour to minutes
-    if (alarmObj.min < convert(min) || timeZone != alarmObj.timeZone) {
-        alarmInterval += 24 * 3600   //sets alarm for next day 
-    }
-    alarmInterval += (alarmObj.min - convert(min)) * 60;     //minutes to seconds
-    alarmInterval -= convert(sec.innerHTML);
-    //rectifies manual delay while setting Alarm
-    alarmInterval = alarmInterval * 1000
-    console.log('alarm set', alarmInterval)             //to milliseconds
-    //   setTimeout(playsound, alarmInterval)
+    let hour = convert(alarmString.substr(0, 2));
+    let min = convert(alarmString.substr(3, 2));
+    let mer = alarmString.substr(6, 2);
+
+    let newAlarm = {
+        hour: hour,
+        min: min,
+        mer: mer,
+        active: true
+    };
+
+    alarmObj.alarms.push(newAlarm); // add the new alarm to the array
+
+    let newElement = document.createElement('div');
+    newElement.innerHTML = `
+            <li class="card">
+                <div class="row">
+                    <div class="col">
+                        <span>${alarm.name}</span>
+                    </div>
+                    <div class="col">
+                        <span>${hour}:${min} ${mer}</span>
+                    </div>
+                    <div class="col">
+                        <span>nhdvurh</span>
+                    </div>
+                </div>
+
+            </li>
+    `;
+    elem.value = '';
+    // Append the new element to the DOM
+    alarmList.appendChild(newElement);
+};
+function alarmRings() {
+    alarmObj.alarms.forEach(function (alarm) {
+        let hour = alarm.hour;
+        let minute = alarm.min;
+        let meridian = alarm.mer;
+
+        let now = new Date();
+        let alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute);
+
+        if (meridian === 'PM' && now.getHours() < 12) {
+            alarmTime.setHours(alarmTime.getHours() + 12);
+        }
+
+        let timeDifference = alarmTime.getTime() - now.getTime();
+
+        if (timeDifference > 0) {
+            setTimeout(() => {
+                // Code to ring the bell
+                console.log(`Alarm for ${hour}:${minute} ${meridian} is ringing!`);
+            }, timeDifference);
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {

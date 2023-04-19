@@ -7,6 +7,7 @@ body {
   top: 10%;
   left: 17%;
 }
+
 #container {
   display: flex;
   height: 10rem;
@@ -80,6 +81,7 @@ hr {
   font-weight: bolder;
   color: rgb(14, 68, 112);
 }
+
 .modal {
   height: 23.2rem;
   border-radius: 10px;
@@ -89,6 +91,7 @@ h3 {
 }
 input {
   color: white;
+  margin-bottom: 0;
 }
 .showbox-option {
   color: green;
@@ -99,4 +102,24 @@ input {
   left: 105%;
   position: relative;
   top: -35%;
+}
+
+#alarm-list-container {
+  margin-top: -30px;
+  height: 9.5rem;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.card {
+  border: 2px solid blue;
+  height: 3rem;
+  width: 90%;
+  margin-left: 3rem;
+  justify-content: center;
+}
+.card col {
+  border: 2px solid red;
+  justify-content: center;
+  display: flex;
 }
