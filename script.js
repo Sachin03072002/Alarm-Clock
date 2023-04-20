@@ -11,7 +11,7 @@ let alarmList = document.getElementById('alarm-list');
 let elem = document.getElementById('elem-time');
 let startDate = document.getElementById('start-date');
 let alarmName = document.getElementById('name');
-// const deleteBtn = document.querySelectorAll('.delete-alarm');
+
 
 let alarmObj = {
     alarms: []
@@ -25,7 +25,12 @@ let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "S
 
 const appear = (x) => { return (x < 10 ? "0" + x : x); }
 const convert = (x) => { return Number.parseInt(x) }
-const hider4 = (x) => { x.hidden = (x.hidden) ? false : true; }
+const Format12 = (h) => {
+    if (h > 12) {
+        h = h - 12;
+    }
+    return h;
+}
 function setTime() {
     setInterval(() => {
         let d = new Date();
@@ -44,7 +49,6 @@ function setTime() {
         if (h > 12) {
             h = h - 12;
         }
-
         hour.innerHTML = appear(h);
         min.innerHTML = appear(m);
         sec.innerHTML = appear(s);
@@ -53,29 +57,27 @@ function setTime() {
         month.innerHTML = monthName[mon];
         year.innerHTML = y;
         date.innerHTML = appear(tarik);
-        let minDate = d.toISOString().slice(0, 10);
-        startDate.setAttribute("min", minDate);
+
         alarmRings();
     }, 1000);
 }
 setTime();
-
 function alarmRings() {
     alarmObj.alarms.forEach(function (alarm) {
         let name = alarm.name;
         let hour = alarm.hour;
         let minute = alarm.min;
         let meridian = alarm.mer;
-        let alarmDate = new Date(startDate.value);
 
         let now = new Date();
-        let alarmTime = new Date(alarmDate.getFullYear(), alarmDate.getMonth(), alarmDate.getDate(), hour, minute);
+        let alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute);
 
         if (meridian === 'PM' && hour !== 12) {
             hour += 12;
         }
         alarmTime.setHours(hour);
         let timeDifference = alarmTime.getTime() - now.getTime();
+
         if (timeDifference > 0) {
             setTimeout(() => {
                 // Code to ring the bell
@@ -86,6 +88,7 @@ function alarmRings() {
 }
 
 
+
 const set = () => {
 
     let alarmString = alarm[0].value;
@@ -93,26 +96,21 @@ const set = () => {
     let min = convert(alarmString.substr(3, 2));
     let mer = alarmString.substr(6, 2);
 
-    let alarmDate = new Date(startDate.value);
     let now = new Date();
     if (alarmName.value == '') {
         alarmName.value = 'New Alarm';
     }
-    if (startDate.value == '') {
-        startDate.value = new Date().toISOString().slice(0, 10);
-    }
-    let alarmTime = new Date(alarmDate.getFullYear(), alarmDate.getMonth(), alarmDate.getDate(), hour, min);
-    console.log(alarmTime);
+    let nowHour = Format12(now.getHours());
+    let nowMin = now.getMinutes();
+    let nowDate = new Date().toISOString().slice(0, 10);
     let newAlarm = {
         id: alarmIndex,
         name: "New Alarm",
         hour: hour,
         min: min,
         mer: mer,
-        alarmDate: startDate.value,
     };
-
-    if (alarmTime < now) {
+    if ((nowHour > hour) || (nowHour == hour && nowMin >= min)) {
         alert('bhaggg');
         return;
     } else {
