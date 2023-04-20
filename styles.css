@@ -92,6 +92,7 @@ h3 {
 input {
   color: white;
   margin-bottom: 0;
+  background-color: transparent;
 }
 .showbox-option {
   color: green;
@@ -99,7 +100,7 @@ input {
   cursor: pointer;
   display: flex;
   width: 2rem;
-  left: 105%;
+  left: 130%;
   position: relative;
   top: -35%;
 }
@@ -122,4 +123,8 @@ input {
   border: 2px solid red;
   justify-content: center;
   display: flex;
+}
+form {
+  display: flex;
+  width: 50rem;
 }
