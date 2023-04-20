@@ -11,7 +11,7 @@ let alarmList = document.getElementById('alarm-list');
 let elem = document.getElementById('elem-time');
 let startDate = document.getElementById('start-date');
 let alarmName = document.getElementById('name');
-const deleteBtn = document.querySelectorAll('.delete-alarm');
+// const deleteBtn = document.querySelectorAll('.delete-alarm');
 
 let alarmObj = {
     alarms: []
@@ -102,7 +102,9 @@ const set = () => {
         startDate.value = new Date().toISOString().slice(0, 10);
     }
     let alarmTime = new Date(alarmDate.getFullYear(), alarmDate.getMonth(), alarmDate.getDate(), hour, min);
+    console.log(alarmTime);
     let newAlarm = {
+        id: alarmIndex,
         name: "New Alarm",
         hour: hour,
         min: min,
@@ -110,7 +112,7 @@ const set = () => {
         alarmDate: startDate.value,
     };
 
-    if (alarmTime <= now) {
+    if (alarmTime < now) {
         alert('bhaggg');
         return;
     } else {
@@ -124,7 +126,7 @@ const set = () => {
     console.log(alarmObj);
     let newElement = document.createElement('div');
     newElement.innerHTML = `
-            <li class="card" >
+            <li class="card" id="${newAlarm.id}">
                 <div class="row">
                     <div class="col">
                         <span>${newAlarm.name}</span> 
@@ -134,7 +136,7 @@ const set = () => {
                     </div>
                     <div class="col">
                         <span><i class="fa-solid fa-pen-to-square"></i></span>
-                        <button class="delete-alarm" onClick="deleteAlarm(event)" ><i class="fa-solid fa-trash"></i></button>                    
+                        <button class="delete" id="${newAlarm.id}"><i class="fa-solid fa-trash-can"></i></button>                    
 
                     </div>
 
@@ -150,29 +152,28 @@ const set = () => {
 
 
 };
-
-function deleteAlarm(event) {
-    event.preventDefault();
-    let alarmid = parseInt(event.target.parentNode.parentNode.getAttribute('id'));
-    console.log(alarmid);
-    // // let alarmId = event.target.getAttribute('id');
-    // // console.log(alarmId);
-    // // let alarmElement = document.getElementById(alarmId);
-    // // console.log(alarmElement);
-    // // alarmElement.remove();
-    // // // remove the alarm from the alarmObj
-    // // for (let i = 0; i < alarmObj.alarms.length; i++) {
-    // //     if (alarmObj.alarms[i].id == alarmId) {
-    // //         alarmObj.alarms.splice(i, 1);
-    // //         break;
-    // //     }
-    // // }
-
-
+function deleteAlarm(id) {
+    let alarmElement = document.getElementById(id);
+    console.log(alarmElement);
+    alarmElement.remove();
+    for (let i = 0; i < alarmObj.alarms.length; i++) {
+        if (alarmObj.alarms[i].id == id) {
+            alarmObj.alarms.splice(i, 1);
+            break;
+        }
+    }
 }
+function handleClickListener(e) {
+    const target = e.target;
+    if (target.className == 'delete') {
+        const taskId = target.id;
+        console.log(taskId)
+        deleteAlarm(taskId);
+        return;
 
-
-
+    }
+}
+document.addEventListener('click', handleClickListener);
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.timepicker');
     var instances = M.Timepicker.init(elems, {});
