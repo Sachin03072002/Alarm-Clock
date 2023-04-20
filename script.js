@@ -9,7 +9,6 @@ let date = document.getElementById("date");
 let alarm = document.querySelectorAll('.timepicker');
 let alarmList = document.getElementById('alarm-list');
 let elem = document.getElementById('elem-time');
-let startDate = document.getElementById('start-date');
 let alarmName = document.getElementById('name');
 
 
@@ -134,7 +133,7 @@ const set = () => {
                     </div>
                     <div class="col">
                         <span><i class="fa-solid fa-pen-to-square"></i></span>
-                        <button class="delete" id="${newAlarm.id}"><i class="fa-solid fa-trash-can"></i></button>                    
+                        <button class="delete" id="${newAlarm.id}">Delete</button>                    
 
                     </div>
 
