@@ -13,8 +13,8 @@ let alarmName = document.getElementById('name');
 const alarmSound = new Audio('alarm.mp3');
 let alarmTile = document.getElementById('alarm-tile');
 let popUp = document.querySelectorAll('.showbox');
+let heading = document.getElementById('heading');
 let alert = document.getElementById("alert");
-// console.log(popUp);
 let alarmObj = {
     alarms: []
 };
@@ -65,8 +65,15 @@ function setTime() {
         month.innerHTML = monthName[mon];
         year.innerHTML = y;
         date.innerHTML = appear(tarik);
-
+        console.log(Object.keys(alarmObj.alarms).length);
         alarmRings();
+        if (Object.keys(alarmObj.alarms).length === 0) {
+            heading.innerHTML = `No active alarms`
+        } else {
+            heading.innerHTML = ''
+            return;
+        }
+
     }, 1000);
 }
 setTime();
@@ -128,7 +135,6 @@ const set = () => {
         hour: hour,
         min: min,
         mer: mer,
-        active: 'active'
     };
     if ((nowHour > hour) || (nowHour == hour && nowMin >= min)) {
         hiderFalse(alert);
@@ -139,9 +145,6 @@ const set = () => {
         newAlarm.name = alarmName.value; // set the name of the alarm
         alarmObj.alarms.push(newAlarm); // add the new alarm to the array
     }
-
-
-    console.log(alarmObj);
     let newElement = document.createElement('div');
     newElement.innerHTML = `
             <li class="card" id="${newAlarm.id}">
