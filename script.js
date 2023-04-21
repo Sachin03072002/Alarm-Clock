@@ -10,8 +10,11 @@ let alarm = document.querySelectorAll('.timepicker');
 let alarmList = document.getElementById('alarm-list');
 let elem = document.getElementById('elem-time');
 let alarmName = document.getElementById('name');
-
-
+const alarmSound = new Audio('alarm.mp3');
+let alarmTile = document.getElementById('alarm-tile');
+let popUp = document.querySelectorAll('.showbox');
+let alert = document.getElementById("alert");
+// console.log(popUp);
 let alarmObj = {
     alarms: []
 };
@@ -29,6 +32,12 @@ const Format12 = (h) => {
         h = h - 12;
     }
     return h;
+}
+const hiderFalse = (x) => {
+    x.hidden = false;
+}
+const hiderTrue = (x) => {
+    x.hidden = true;
 }
 function setTime() {
     setInterval(() => {
@@ -63,7 +72,7 @@ function setTime() {
 setTime();
 function alarmRings() {
     alarmObj.alarms.forEach(function (alarm) {
-        let name = alarm.name;
+
         let hour = alarm.hour;
         let minute = alarm.min;
         let meridian = alarm.mer;
@@ -78,9 +87,20 @@ function alarmRings() {
         let timeDifference = alarmTime.getTime() - now.getTime();
 
         if (timeDifference > 0) {
+
             setTimeout(() => {
-                // Code to ring the bell
+
+
+                alarmSound.play();
+                alarmSound.loop = true;
+                hiderFalse(popUp[1]);
                 console.log(`Alarm for ${hour % 12}:${minute} ${meridian} is ringing!`);
+                setTimeout(() => {
+                    hiderTrue(popUp[1]);
+                    deleteAlarm(alarm.id);
+                    alarmSound.pause();
+                    alarmSound.currentTime = 0;
+                }, 10000);
             }, timeDifference);
         }
     });
@@ -108,9 +128,10 @@ const set = () => {
         hour: hour,
         min: min,
         mer: mer,
+        active: 'active'
     };
     if ((nowHour > hour) || (nowHour == hour && nowMin >= min)) {
-        alert('bhaggg');
+        hiderFalse(alert);
         return;
     } else {
         alarmIndex++;
@@ -125,16 +146,14 @@ const set = () => {
     newElement.innerHTML = `
             <li class="card" id="${newAlarm.id}">
                 <div class="row">
-                    <div class="col">
+                    <div class="col ms-2">
                         <span>${newAlarm.name}</span> 
                     </div>
-                    <div class="col">
+                    <div class="col ms-2">
                         <span>${appear(hour)}:${appear(min)} ${mer}</span>
                     </div>
-                    <div class="col">
-                        <span><i class="fa-solid fa-pen-to-square"></i></span>
+                    <div class="col ms-2">
                         <button class="delete" id="${newAlarm.id}">Delete</button>                    
-
                     </div>
 
                 </div>
@@ -151,7 +170,6 @@ const set = () => {
 };
 function deleteAlarm(id) {
     let alarmElement = document.getElementById(id);
-    console.log(alarmElement);
     alarmElement.remove();
     for (let i = 0; i < alarmObj.alarms.length; i++) {
         if (alarmObj.alarms[i].id == id) {
@@ -164,7 +182,6 @@ function handleClickListener(e) {
     const target = e.target;
     if (target.className == 'delete') {
         const taskId = target.id;
-        console.log(taskId)
         deleteAlarm(taskId);
         return;
 

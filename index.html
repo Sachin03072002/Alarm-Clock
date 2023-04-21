@@ -25,6 +25,10 @@
             <div id="date"><span>Date</span></div>
         </div>
     </div>
+    <div class="showbox" id="alert" hidden>
+        <div id="ddd">Choose Future time, set alarm.</div>
+        <div class="showbox-option" onclick="hiderTrue(popUp[0]);">OK</div>
+    </div>
 
     <div id="container">
         <div class="box">
@@ -60,12 +64,15 @@
                     </div>
                     <div class="input-field">
                         <input type="text" id="name" class="name" placeholder="Set Name">
-
                     </div>
                 </form>
-                <div class="showbox-option" onclick=`${set()}`><i class="fa-solid fa-check"></i></div>
+                <div class="showbox-option-set" onclick=`${set()}`><i class="fa-solid fa-check"></i></div>
             </div>
             <div class="col s12 m3"></div>
+        </div>
+        <div class="showbox" hidden>
+            <div id="ddd">Do you want to off alarm ?</div>
+            <div class="showbox-option" onclick="hiderTrue(popUp[1]);alarmSound.pause();">yes</div>
         </div>
     </div>
 
