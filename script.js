@@ -165,6 +165,7 @@ const set = () => {
         }
         let nowHour = Format12(now.getHours());
         let nowMin = now.getMinutes();
+        let nowDate = new Date().toISOString().slice(0, 10);
         //declaring the properties of the alarmObj
         let newAlarm = {
             id: alarmIndex,
@@ -183,7 +184,6 @@ const set = () => {
             newAlarm.name = alarmName.value; // set the name of the alarm
             alarmObj.alarms.push(newAlarm); // add the new alarm to the array
         }
-
         // Create new list element for new alarm
         let newElement = document.createElement('div');
         newElement.innerHTML = `
@@ -196,18 +196,17 @@ const set = () => {
                         <span>${appear(hour)}:${appear(min)} ${mer}</span>
                     </div>
                     <div class="col ms-2">
-                        <button class="delete" id="${newAlarm.id}">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <button class="delete" id="${newAlarm.id}">Delete</button>                    
                     </div>
                 </div>
+                
             </li>
-        `;
-        alarmList.appendChild(newElement.firstChild);
-
-        // Clear input values
-        alarm[0].value = '';
+    `;
+        elem.value = '';
         alarmName.value = '';
+        // Append the new element to the DOM
+        alarmList.appendChild(newElement);
+
     }
 };
 
