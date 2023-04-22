@@ -70,7 +70,7 @@ function setTime() {
         let y = d.getFullYear();
         let dur = "AM";
         // if the time is greater tan 12 then changing it to 12hr format
-        if ((h > 12) || (h == 12 && m > 0)) {
+        if ((h > 12) || (h == 12 && m >= 0)) {
 
             dur = "PM"
         }
