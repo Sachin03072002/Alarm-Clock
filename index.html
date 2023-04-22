@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- materialize css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- custome css -->
     <link rel="stylesheet" href="styles.css">
     <title>Alarm CLock</title>
 </head>
 
 <body>
+    <!-- the date,month and year display container -->
     <div id="header">
         <h2 id="day"></h2>
         <div id="calender">
@@ -25,24 +28,31 @@
             <div id="date"><span>Date</span></div>
         </div>
     </div>
+
+    <!-- the alert component whcih will only show when the time is past -->
     <div class="showbox" id="alert" hidden>
         <div id="ddd">Choose Future time, set alarm.</div>
         <div class="showbox-option" onclick="hiderTrue(popUp[0]);">OK</div>
     </div>
 
+    <!-- the time display conatiner -->
     <div id="container">
+        <!-- hour container -->
         <div class="box">
             <h1 id="hour">00</h1>
         </div>
-        <span>:</span>
+        <span class="blink">:</span>
+        <!-- minute container -->
         <div class="box">
             <h1 id="min">00</h1>
         </div>
-        <span>:</span>
+        <span class="blink">:</span>
+        <!-- sec container -->
         <div class="box">
             <h1 id="sec">00</h1>
         </div>
         <span></span>
+        <!-- timezone container -->
         <div class="box">
             <h1 id="timeZone">AM</h1>
         </div>
@@ -51,7 +61,7 @@
 
 
 
-
+    <!-- the set Alarm component where we set the time for the alarm -->
     <div class="time-container">
         <div class="row">
             <div class="col s12 m3"></div>
@@ -59,7 +69,7 @@
                 <h3>Set Alarm</h3>
                 <form>
                     <div class="input-field">
-                        <input type="text" id="elem-time" class="timepicker">
+                        <input type="text" id="elem-time" class="timepicker" required>
                         <label for="elem-time">Set Time</label>
                     </div>
                     <div class="input-field">
@@ -70,6 +80,7 @@
             </div>
             <div class="col s12 m3"></div>
         </div>
+        <!-- when the alarm time is passed this box is shown -->
         <div class="showbox" hidden>
             <div id="ddd">Do you want to off alarm ?</div>
             <div class="showbox-option" onclick="hiderTrue(popUp[1]);alarmSound.pause();">yes</div>
@@ -79,9 +90,11 @@
 
 
 
-
+    <!-- the conainer for listing the time -->
     <div id="alarm-list-container">
+        <!-- the heading to show when the alarm is empty -->
         <h3 id="heading"></h3>
+        <!-- list to show the alarm components -->
         <ul id="alarm-list">
 
         </ul>
@@ -94,12 +107,15 @@
 
 
 
-
+    <!-- fontawesome script -->
     <script src="https://kit.fontawesome.com/089671cb08.js" crossorigin="anonymous"></script>
+    <!-- materialize script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
+    <!-- custome script -->
     <script src="script.js"></script>
 </body>
 

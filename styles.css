@@ -1,5 +1,6 @@
+/* styling for the body */
 body {
-  background-image: url("https://th.bing.com/th/id/OIP.JiBCmPyvVwbvqpluGZZr4AHaEo?pid=ImgDet&rs=1");
+  background-image: url("https://live.staticflickr.com/4611/25864314798_777bb3f275_b.jpg");
   margin: 0;
   background-repeat: no-repeat;
   background-size: cover;
@@ -7,7 +8,7 @@ body {
   top: 10%;
   left: 17%;
 }
-
+/* styling for the time diplay conatiner */
 #container {
   display: flex;
   height: 10rem;
@@ -15,15 +16,18 @@ body {
   /* border: 2px solid red; */
   justify-content: space-evenly;
 }
+/* to hide the scroll bar */
 ::-webkit-scrollbar {
   width: 15px;
   /* border: 2px solid blue; */
 }
+
 h1 {
   font-size: 5rem;
   margin: 0;
   color: rgb(3, 138, 248);
 }
+/* styling for the sontainer span */
 #container span {
   display: flex;
   justify-content: center;
@@ -31,6 +35,7 @@ h1 {
   font-size: 6rem;
   color: white;
 }
+/* styling for each time display box */
 .box {
   background-color: white;
   height: 9rem;
@@ -43,6 +48,7 @@ h1 {
   display: flex;
   opacity: 0.5;
 }
+/* styling for the day display */
 .day {
   height: 2rem;
   width: 15rem;
@@ -54,6 +60,7 @@ h2 {
   font-size: 2rem;
   color: rgb(3, 138, 248);
 }
+/* styling for the calender */
 #calender {
   height: 6rem;
   width: 13rem;
@@ -74,6 +81,7 @@ hr {
 #month-year span {
   color: rgb(14, 68, 112);
 }
+/* styling for the date part */
 #date {
   background-color: transparent;
   display: grid;
@@ -99,7 +107,7 @@ input {
   background-color: transparent;
 }
 .showbox-option-set {
-  color: green;
+  color: white;
   font-weight: bolder;
   cursor: pointer;
   display: flex;
@@ -108,7 +116,7 @@ input {
   position: relative;
   top: -35%;
 }
-
+/* styling for the alarm conatiner */
 #alarm-list-container {
   margin-top: -50px;
   height: 9.5rem;
@@ -116,6 +124,8 @@ input {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+/* styling for each element of alarm compoonent */
+
 .card {
   border: 2px solid blue;
   height: 3rem;
@@ -150,7 +160,7 @@ form {
 .delete:hover {
   background-color: red;
 }
-
+/* styling for the alert box to display */
 .showbox {
   display: flex;
   flex-direction: column;
@@ -181,4 +191,8 @@ form {
 }
 .showbox-option:nth-child(2) {
   font-size: 2.5rem;
+}
+/* styling for the blink of the blinker */
+.blinkThis {
+  opacity: 0;
 }
